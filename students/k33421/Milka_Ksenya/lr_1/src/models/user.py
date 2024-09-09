@@ -8,15 +8,24 @@ if tp.TYPE_CHECKING:
     from .user_skill import UserSkill
     from .project import Project
     from .project_user import ProjectUser
+    from .task import Task
 
 
 class User(mixins.IDMixin, SQLModel, table=True):
-    username: str = Field(index=True)
+    username: str = Field(unique=True, index=True)
     password: str
     first_name: tp.Optional[str] = None
     last_name: tp.Optional[str] = None
     email: tp.Optional[str] = None
 
-    user_skills: list["UserSkill"] = Relationship(back_populates="users")
+    user_skills: list["UserSkill"] = Relationship(back_populates="user")
     created_projects: list["Project"] = Relationship(back_populates="creator")
     members: list["ProjectUser"] = Relationship(back_populates="user")
+    created_tasks: list["Task"] = Relationship(
+        back_populates="creator",
+        sa_relationship_kwargs={"foreign_keys": "[Task.creator_id]"},
+    )
+    assigned_tasks: list["Task"] = Relationship(
+        back_populates="assignee",
+        sa_relationship_kwargs={"foreign_keys": "[Task.assignee_id]"},
+    )

@@ -19,6 +19,12 @@ class Task(mixins.IDMixin, SQLModel, table=True):
     creator_id: tp.Optional[int] = Field(None, foreign_key="user.id")
     assignee_id: tp.Optional[int] = Field(None, foreign_key="user.id")
 
-    creator: "User" = Relationship(back_populates="created_tasks")
-    assignee: "User" = Relationship(back_populates="assigned_tasks")
+    creator: "User" = Relationship(
+        back_populates="created_tasks",
+        sa_relationship_kwargs={"foreign_keys": "[Task.creator_id]"}
+    )
+    assignee: "User" = Relationship(
+        back_populates="assigned_tasks",
+        sa_relationship_kwargs={"foreign_keys": "[Task.assignee_id]"}
+    )
     project: "Project" = Relationship(back_populates="tasks")

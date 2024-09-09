@@ -1,7 +1,9 @@
+from .auntification import Auntification
 from .database import Database
 
 __all__ = [
-    "database_settings",
+    "database",
 ]
 
-database_settings = Database()  # type: ignore
+database = Database()  # type: ignore
+auntification = Auntification()  # type: ignore
