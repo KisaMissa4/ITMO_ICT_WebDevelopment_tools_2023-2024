@@ -12,5 +12,5 @@ class UserSkill(SQLModel, table=True):
     skill_id: tp.Optional[int] = Field(None, foreign_key="skill.id", primary_key=True)
     level: int = 1
 
-    user: "Skill" = Relationship(back_populates="user_skills")
-    skill: "User" = Relationship(back_populates="user_skills")
+    user: "User" = Relationship(back_populates="user_skills")
+    skill: "Skill" = Relationship(back_populates="user_skills")
