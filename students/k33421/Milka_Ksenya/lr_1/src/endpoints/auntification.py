@@ -6,7 +6,7 @@ from sqlmodel import select
 from .. import dependencies, models, schemas
 from ..services.auntification import check_password, create_jwt, hash_password
 
-router = APIRouter(prefix="/auth")
+router = APIRouter(prefix="/auth", tags=["Auntification"])
 
 
 @router.post("/signUp", response_model=str)

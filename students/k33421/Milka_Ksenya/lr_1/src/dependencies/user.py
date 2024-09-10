@@ -10,7 +10,7 @@ from .. import models, schemas
 async def get_user(
     payload: tp.Annotated[schemas.Payload, Depends(get_payload)],
     session: AsyncSession = Depends(get_session),
-) -> type[models.User]:
+) -> models.User:
     user = await session.get(models.User, payload.sub)
 
     if user is None:

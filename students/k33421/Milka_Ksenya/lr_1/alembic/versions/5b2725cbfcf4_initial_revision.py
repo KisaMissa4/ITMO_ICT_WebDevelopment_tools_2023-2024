@@ -1,8 +1,8 @@
 """Initial revision
 
-Revision ID: 67ec14f1212c
+Revision ID: 5b2725cbfcf4
 Revises: 
-Create Date: 2024-09-09 23:23:52.459045
+Create Date: 2024-09-10 03:05:15.082173
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision: str = '67ec14f1212c'
+revision: str = '5b2725cbfcf4'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -34,9 +34,10 @@ def upgrade() -> None:
     sa.Column('first_name', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('last_name', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.Column('email', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('about', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=False)
+    op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('project',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
@@ -71,10 +72,8 @@ def upgrade() -> None:
     sa.Column('status', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('due_date', sa.DateTime(), nullable=True),
     sa.Column('project_id', sa.Integer(), nullable=True),
-    sa.Column('creator_id', sa.Integer(), nullable=True),
     sa.Column('assignee_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['assignee_id'], ['user.id'], ),
-    sa.ForeignKeyConstraint(['creator_id'], ['user.id'], ),
     sa.ForeignKeyConstraint(['project_id'], ['project.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
