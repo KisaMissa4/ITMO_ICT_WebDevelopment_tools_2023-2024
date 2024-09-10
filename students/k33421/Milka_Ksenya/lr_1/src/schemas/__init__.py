@@ -1,8 +1,8 @@
 from .auntification import AccessToken, ChangePassword, Payload, Sign
-from .project import Project, ProjectCRUD
+from .project import Project, ProjectCRUD, ProjectJoin
 from .skill import Skill, UserSkill
 from .task import Task, TaskCRUD, TaskStatusCRUD
-from .user import User, UserMe, UserMember
+from .user import User, UserCRUD, UserMe, UserMember
 
 __all__ = [
     "AccessToken",
@@ -19,4 +19,6 @@ __all__ = [
     "TaskCRUD",
     "UserMember",
     "TaskStatusCRUD",
+    "ProjectJoin",
+    "UserCRUD",
 ]

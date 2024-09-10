@@ -41,6 +41,22 @@ async def get_me(
     )
 
 
+@router.put("/me", response_model=schemas.User)
+async def update_me(
+    schema: schemas.UserCRUD,
+    user: models.User = Depends(dependencies.get_user),
+    session: dependencies.AsyncSession = Depends(dependencies.get_session),
+):
+    for field, value in schema:
+        setattr(user, field, value)
+
+    session.add(user)
+    await session.commit()
+    await session.refresh(user)
+
+    return schemas.User.model_validate(user)
+
+
 @router.get("/me/createdProjects", response_model=list[schemas.Project])
 async def get_created_projects(
     user: models.User = Depends(dependencies.get_user),
