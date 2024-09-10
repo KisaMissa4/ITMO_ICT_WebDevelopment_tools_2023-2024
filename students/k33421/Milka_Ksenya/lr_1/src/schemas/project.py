@@ -4,6 +4,10 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
 
+class ProjectJoin(BaseModel):
+    role: str
+
+
 class ProjectCRUD(BaseModel):
     title: str
     description: tp.Optional[str]
