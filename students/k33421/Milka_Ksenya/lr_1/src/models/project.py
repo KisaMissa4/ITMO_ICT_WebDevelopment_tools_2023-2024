@@ -13,10 +13,10 @@ if tp.TYPE_CHECKING:
 
 class Project(mixins.IDMixin, SQLModel, table=True):
     title: str
-    description: tp.Optional[str]
+    description: tp.Optional[str] = None
     is_active: bool = False
     start_date: datetime
-    end_date: tp.Optional[datetime]
+    end_date: tp.Optional[datetime] = None
     creator_id: tp.Optional[int] = Field(None, foreign_key="user.id")
 
     creator: "User" = Relationship(back_populates="created_projects")
