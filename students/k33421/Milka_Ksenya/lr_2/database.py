@@ -16,6 +16,6 @@ def insert_data_to_project(data):
 
     await connection.execute(
         """
-        INSERT INTO project (name, description, deadline)
+        INSERT INTO "project"
         """
     )
