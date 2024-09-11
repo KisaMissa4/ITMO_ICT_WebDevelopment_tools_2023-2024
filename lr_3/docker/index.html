@@ -1,0 +1,1079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../lr_2/task_2/">
+      
+      
+        <link rel="next" href="../celery/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Настройка docker - Документация</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Документация" class="md-header__button md-logo" aria-label="Документация" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Документация
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Настройка docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Документация" class="md-nav__button md-logo" aria-label="Документация" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Документация
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа №1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа №1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr_1/db/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    База данных
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr_1/auth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Аутентификация
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr_1/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Эндпоинты
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа №2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа №2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr_2/task_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr_2/task_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа №3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа №3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Настройка docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Настройка docker
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Что такое Docker?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Что такое Docker?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основные преимущества Docker:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Что такое Dockerfile?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Что такое Dockerfile?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример Dockerfile:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Объяснение:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Что такое Docker Compose?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Что такое Docker Compose?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример файла docker-compose.yml:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Объяснение:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Как это работает вместе?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Как это работает вместе?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Цель Dockerfile:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Цель Docker Compose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Процесс работы:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-docker-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Преимущества использования Docker и Docker Compose:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../celery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Настройка celery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Что такое Docker?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Что такое Docker?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основные преимущества Docker:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Что такое Dockerfile?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Что такое Dockerfile?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример Dockerfile:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Объяснение:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Что такое Docker Compose?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Что такое Docker Compose?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пример файла docker-compose.yml:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Объяснение:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Как это работает вместе?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Как это работает вместе?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dockerfile_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Цель Dockerfile:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Цель Docker Compose:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Процесс работы:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-docker-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Преимущества использования Docker и Docker Compose:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Настройка docker</h1>
+
+<h2 id="1-docker">1. Что такое Docker?</h2>
+<p>Docker — это платформа, которая позволяет разрабатывать, доставлять и запускать приложения в контейнерах. Контейнеры
+представляют собой легковесные, автономные, исполняемые пакеты программного обеспечения, которые включают всё необходимое для
+запуска: код, библиотеки, зависимости, настройки и т.д.</p>
+<h3 id="docker">Основные преимущества Docker:</h3>
+<ul>
+<li><strong>Портативность</strong>: Контейнеры работают одинаково на любом устройстве, где установлен Docker.</li>
+<li><strong>Изолированность</strong>: Контейнеры не вмешиваются в процессы, происходящие в других контейнерах или в основной системе.</li>
+<li><strong>Масштабируемость</strong>: Легко масштабировать приложение за счёт запуска дополнительных контейнеров.</li>
+</ul>
+<h2 id="2-dockerfile">2. Что такое Dockerfile?</h2>
+<p>Dockerfile — это сценарий сборки контейнера, который содержит инструкции для создания образа Docker. С помощью Dockerfile вы
+можете описать, какие зависимости и конфигурации нужны вашему приложению.</p>
+<h3 id="dockerfile">Пример Dockerfile:</h3>
+<pre><code class="language-dockerfile">FROM huecker.io/library/python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache -r requirements.txt
+
+COPY . .
+</code></pre>
+<h3 id="_1">Объяснение:</h3>
+<ul>
+<li><strong><code>FROM huecker.io/library/python:3.11-slim</code></strong>: Базовый образ, с которого начинается сборка. Это облегчённая версия Python
+  3.11.</li>
+<li><strong><code>WORKDIR /app</code></strong>: Устанавливает рабочую директорию <code>/app</code> внутри контейнера, куда будет копироваться ваш код.</li>
+<li><strong><code>COPY requirements.txt .</code></strong>: Копирует файл <code>requirements.txt</code> из локальной файловой системы в рабочую директорию
+  контейнера.</li>
+<li><strong><code>RUN pip install --no-cache -r requirements.txt</code></strong>: Устанавливает зависимости из <code>requirements.txt</code> с использованием <code>pip</code>
+  и без сохранения кеша.</li>
+<li><strong><code>COPY . .</code></strong>: Копирует всё содержимое текущей директории (где расположен Dockerfile) в контейнер.</li>
+</ul>
+<p>Dockerfile определяет, как будет собран образ вашего приложен��я. Этот образ затем можно запускать в контейнерах, предоставляя
+единое, неизменяемое окружение для вашего кода.</p>
+<h2 id="3-docker-compose">3. Что такое Docker Compose?</h2>
+<p>Docker Compose — это инструмент для упрощения управления многоконтейнерными приложениями. Вместо того чтобы запускать каждый
+контейнер по отдельности, <code>docker-compose.yml</code> позволяет вам описать все службы, которые требуются вашему приложению, в одном
+файле, а затем запустить их одной командой.</p>
+<h3 id="docker-composeyml">Пример файла <code>docker-compose.yml</code>:</h3>
+<pre><code class="language-yaml">services:
+  database:
+    container_name: database
+    image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - pg/var/lib/postgresql/data
+    ports:
+      - &quot;${POSTGRES_PORT}:5432&quot;
+
+  broker:
+    container_name: broker
+    image: redis:latest
+    env_file:
+      - .env
+    ports:
+      - &quot;${REDIS_PORT}:6379&quot;
+
+  queue:
+    container_name: queue
+    build: .
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=broker
+      - REDIS_PORT=6379
+    depends_on:
+      - broker
+      - database
+    command: python -m celery -A src.queue worker
+
+  app:
+    container_name: app
+    build: .
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=broker
+      - REDIS_PORT=6379
+    depends_on:
+      - broker
+      - database
+    command: python -m uvicorn src.app:app --host 0.0.0.0 --port 8000
+    ports:
+      - &quot;${APP_PORT}:8000&quot;
+
+volumes:
+  pg
+</code></pre>
+<h3 id="_2">Объяснение:</h3>
+<ul>
+<li>
+<p><strong><code>services</code></strong>: Здесь определяются контейнеры (или сервисы), которые нужны для работы приложения.</p>
+<ul>
+<li>
+<p><strong><code>database</code></strong>: Контейнер с PostgreSQL. Используется для хранения данных приложения.</p>
+<ul>
+<li><strong><code>container_name: database</code></strong>: Имя контейнера.</li>
+<li><strong><code>image: postgres:latest</code></strong>: Используется последний образ PostgreSQL.</li>
+<li><strong><code>env_file: .env</code></strong>: Файл <code>.env</code> содержит переменные окружения (например, параметры подключения к базе данных).</li>
+<li><strong><code>volumes</code></strong>: Определяет тома для хранения данных, чтобы они сохранялись между перезапусками контейнера.</li>
+<li><strong><code>ports</code></strong>: Пробрасывает локальный порт для доступа к базе данных (например, 5432).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>broker</code></strong>: Контейнер с Redis. Используется как брокер сообщений для Celery.</p>
+<ul>
+<li><strong><code>container_name: broker</code></strong>: Имя контейнера.</li>
+<li><strong><code>image: redis:latest</code></strong>: Используется последний образ Redis.</li>
+<li><strong><code>ports</code></strong>: Пробрасывает локальный порт для доступа к Redis (например, 6379).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>queue</code></strong>: Контейнер для выполнения фоновых задач с использованием Celery.</p>
+<ul>
+<li><strong><code>build: .</code></strong>: Строится образ на основе Dockerfile.</li>
+<li><strong><code>command</code></strong>: Запускает Celery воркер для обработки задач в очереди.</li>
+<li><strong><code>depends_on</code></strong>: Указывает зависимости от других контейнеров (запускается после <code>broker</code> и <code>database</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong><code>app</code></strong>: Основной контейнер с приложением, который запускается с использованием Uvicorn (FastAPI).</p>
+<ul>
+<li><strong><code>command</code></strong>: Команда для запуска веб-приложения через Uvicorn.</li>
+<li><strong><code>ports</code></strong>: Пробрасывает локальный порт для доступа к приложению (например, 8000).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>volumes</code></strong>: Определяет тома для хранения данных PostgreSQL, чтобы они сохранялись между перезапусками контейнера.</p>
+</li>
+</ul>
+<h2 id="4">4. Как это работает вместе?</h2>
+<h3 id="dockerfile_1">Цель Dockerfile:</h3>
+<ul>
+<li>Dockerfile создаёт образ вашего приложения с установленными зависимостями, что позволяет легко запускать его в любом
+  окружении.</li>
+</ul>
+<h3 id="docker-compose">Цель Docker Compose:</h3>
+<ul>
+<li>Docker Compose управляет несколькими контейнерами, обеспечивая автоматический запуск зависимостей (например, базы данных и
+  брокера сообщений) перед запуском основного приложения. Это удобно для разработки и тестирования.</li>
+</ul>
+<h3 id="_3">Процесс работы:</h3>
+<ol>
+<li>
+<p><strong>Создание контейнеров</strong>:</p>
+<ul>
+<li>Вы запускаете все контейнеры одной командой: <code>docker-compose up</code>.</li>
+<li>Docker Compose автоматически собирает образ вашего приложения и запускает все службы, такие как база данных, брокер
+  сообщений и воркер.</li>
+</ul>
+</li>
+<li>
+<p><strong>Обработка фоновых задач</strong>:</p>
+<ul>
+<li>Воркер (Celery) обрабатывает фоновые задачи, которые поступают от приложения через брокер (Redis).</li>
+</ul>
+</li>
+<li>
+<p><strong>Взаимодействие с базой данных</strong>:</p>
+<ul>
+<li>Приложение взаимодействует с PostgreSQL через контейнер базы данных, используя подключение по сети Docker.</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-docker-docker-compose">5. Преимущества использования Docker и Docker Compose:</h2>
+<ul>
+<li><strong>Упрощённая настройка окружения</strong>: Все зависимости (например, база данных, брокер сообщений) автоматически настраиваются и
+  запускаются.</li>
+<li><strong>Универсальность</strong>: Контейнеры можно запускать на любом сервере или локальной машине без необходимости в сложной
+  конфигурации.</li>
+<li><strong>Изоляция</strong>: Приложение и его зависимости изолированы от хостовой системы, что предотвращает конфликты версий библиотек и
+  инструментов.</li>
+</ul>
+<p>Docker и Docker Compose делают управление многокомпонентными приложениями лёгким и масштабируемым, улучшая процесс разработки и
+тестирования.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
