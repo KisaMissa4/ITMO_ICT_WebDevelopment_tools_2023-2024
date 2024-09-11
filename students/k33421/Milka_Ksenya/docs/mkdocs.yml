@@ -1,0 +1,11 @@
+site_name: Документация
+
+theme:
+  name: 'material'
+
+nav:
+  - Главная: 'index.md'
+  - Лабораторная работа №1:
+      - База данных: 'lr_1/db.md'
+      - Аутентификация: 'lr_1/auth.md'
+      - Эндпоинты: 'lr_1/endpoints.md'
