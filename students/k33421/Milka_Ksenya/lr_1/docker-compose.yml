@@ -1,5 +1,5 @@
 services:
-  postgres:
+  database:
     container_name: database
     image: postgres:latest
     env_file:
@@ -9,7 +9,7 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
 
-  redis:
+  broker:
     container_name: broker
     image: redis:latest
     env_file:
